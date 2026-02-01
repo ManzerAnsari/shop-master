@@ -1,0 +1,41 @@
+@import "tailwindcss";
+@import "../../theme.css";
+
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-xl font-medium transition-all duration-200;
+  }
+
+  .btn-primary {
+    @apply bg-primary-medium text-accent-light hover:bg-[#4d6b8f] shadow-md;
+  }
+
+  .btn-secondary {
+    @apply bg-accent-warm text-primary-dark hover:bg-[#c9b5a7] shadow-sm;
+  }
+
+  .btn-outline {
+    @apply border-2 border-primary-medium text-primary-medium hover:bg-primary-medium hover:text-accent-light;
+  }
+
+  .btn-ghost {
+    @apply text-primary-medium hover:bg-accent-light;
+  }
+
+  .btn-sm {
+    @apply text-sm px-3 py-1.5 rounded-lg;
+  }
+
+  .btn-md {
+    @apply text-base px-4 py-2 rounded-xl;
+  }
+
+  .btn-lg {
+    @apply text-lg px-6 py-3 rounded-xl;
+  }
+
+  .btn:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+}

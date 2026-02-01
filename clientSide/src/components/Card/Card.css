@@ -1,0 +1,9 @@
+@import "tailwindcss";
+@import "../../theme.css";
+
+
+@layer components {
+  .card {
+    @apply bg-white rounded-2xl shadow-lg border-2 border-accent-warm p-6 transition-shadow hover:shadow-xl;
+  }
+}

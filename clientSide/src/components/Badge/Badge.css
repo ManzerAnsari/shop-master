@@ -1,0 +1,21 @@
+@import "tailwindcss";
+@import "../../theme.css";
+
+
+@layer components {
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold;
+  }
+
+  .badge-primary {
+    @apply bg-primary-medium text-accent-light;
+  }
+
+  .badge-secondary {
+    @apply bg-accent-warm text-primary-dark;
+  }
+
+  .badge-outline {
+    @apply border-2 border-primary-medium text-primary-medium;
+  }
+}

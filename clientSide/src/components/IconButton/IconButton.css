@@ -1,0 +1,276 @@
+/* IconButton.css
+   - Specific selectors to override AntD defaults if present
+   - Glowing border on hover (outer glow + inset crisp edge)
+   - scale(1.1) on hover
+   - Uses --variant-color per variant
+*/
+
+/* ---------------- root tokens ---------------- */
+:root {
+  --btn-bg: #ffffff;
+  --btn-border: #e6e6e6;
+  --btn-fg: #222222;
+  --btn-radius: 8px;
+
+  --size-small: 32px;
+  --size-medium: 36px;
+  --size-large: 44px;
+
+  --trans-fast: 140ms;
+  --trans-medium: 200ms;
+
+  --focus-glow: 0 0 0 4px rgba(22, 119, 255, 0.14);
+}
+
+/* ---------------- base reset & high-specificity for buttons (over AntD) ---------------- */
+/* target button elements with class to be more specific than .ant-btn */
+button.icon-button,
+.icon-button {
+  -webkit-appearance: none;
+  appearance: none;
+
+  border: 1.5px solid var(--btn-border) !important; /* override antd border if present */
+  background: var(--btn-bg) !important;
+  color: var(--btn-fg) !important;
+  border-radius: var(--btn-radius) !important;
+
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  padding: 0.5rem;
+  min-width: var(--size-medium);
+  min-height: var(--size-medium);
+
+  cursor: pointer;
+  box-sizing: border-box;
+  user-select: none;
+
+  transition: transform var(--trans-medium) cubic-bezier(0.2, 0.9, 0.2, 1),
+    box-shadow var(--trans-fast) linear, border-color var(--trans-fast) linear,
+    color var(--trans-fast) linear, background-color var(--trans-fast) linear;
+  will-change: transform, box-shadow;
+  background-clip: padding-box;
+}
+
+/* ensure AntD-specific selectors don't override our font-size/line-height */
+button.icon-button,
+.icon-button {
+  font: inherit;
+  line-height: 1;
+}
+
+/* Icon styles (Iconify) */
+.icon-button svg,
+button.icon-button svg {
+  width: 1em;
+  height: 1em;
+  stroke: currentColor;
+  fill: currentColor;
+  display: block;
+}
+
+/* label */
+.icon-button-label {
+  font-size: 13px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* ---------------- sizes ---------------- */
+.icon-button-small {
+  padding: 0.35rem !important;
+  min-width: var(--size-small);
+  min-height: var(--size-small);
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.icon-button-medium {
+  padding: 0.5rem !important;
+  min-width: var(--size-medium);
+  min-height: var(--size-medium);
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.icon-button-large {
+  padding: 0.65rem !important;
+  min-width: var(--size-large);
+  min-height: var(--size-large);
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+/* -------------- hover: glowing border (outer glow + inset) and scale 1.1 -------------- */
+/* Important: keep border visible; outer glow uses color with spread; inset keeps edge crisp */
+.icon-button:hover:not(:disabled),
+.icon-button:focus-visible:not(:disabled),
+button.icon-button:hover:not(:disabled),
+button.icon-button:focus-visible:not(:disabled) {
+  transform: scale(1.1);
+  background: transparent !important; /* ensure no fill appears */
+  /* outer glow + inset crisp edge */
+  box-shadow: 0 0 12px 4px
+      color-mix(in srgb, var(--variant-color) 28%, transparent),
+    inset 0 0 0 0px var(--variant-color);
+  /* keep border visible */
+  /* border-color: color-mix(in srgb, var(--variant-color) 14%, var(--btn-border)); */
+}
+
+/* pressed */
+.icon-button:active:not(:disabled),
+button.icon-button:active:not(:disabled) {
+  transform: scale(0.98);
+  box-shadow: 0 0 8px 2px
+      color-mix(in srgb, var(--variant-color) 24%, transparent),
+    inset 0 0 0 1.6px var(--variant-color);
+}
+
+/* keyboard focus: focus ring + variant inset */
+.icon-button:focus-visible,
+button.icon-button:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-glow), inset 0 0 0 1.6px var(--variant-color);
+}
+
+/* ---------------- disabled ---------------- */
+.icon-button:disabled,
+button.icon-button:disabled,
+.icon-button[aria-disabled="true"] {
+  opacity: 0.48;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  pointer-events: none;
+}
+
+/* -------------- variant defaults (fallback) -------------- */
+.icon-button[class*="icon-button-"] {
+  --variant-color: var(--btn-fg);
+}
+
+/* -------------- variants: sets --variant-color & border-color -------------- */
+
+/* Edit - blue */
+.icon-button.icon-button-edit {
+  --variant-color: #1677ff;
+  border-color: #91caff !important;
+  color: var(--variant-color) !important;
+  background: transparent !important;
+}
+
+/* Delete - red */
+.icon-button.icon-button-delete {
+  --variant-color: #ff4d4f;
+  border-color: #ffb2b2 !important;
+  color: var(--variant-color) !important;
+  background: transparent !important;
+}
+
+/* View - green */
+.icon-button.icon-button-view {
+  --variant-color: #52c41a;
+  border-color: #bfeab0 !important;
+  color: var(--variant-color) !important;
+  background: transparent !important;
+}
+
+/* Add - purple */
+.icon-button.icon-button-add {
+  --variant-color: #722ed1;
+  border-color: #d6b6ff !important;
+  color: var(--variant-color) !important;
+  background: transparent !important;
+}
+
+/* Download - teal */
+.icon-button.icon-button-download {
+  --variant-color: #13c2c2;
+  border-color: #bff3f0 !important;
+  color: var(--variant-color) !important;
+  background: transparent !important;
+}
+
+/* Upload - orange */
+.icon-button.icon-button-upload {
+  --variant-color: #d46b08;
+  border-color: #ffe0b8 !important;
+  color: var(--variant-color) !important;
+  background: transparent !important;
+}
+
+/* Refresh - teal */
+.icon-button.icon-button-refresh {
+  --variant-color: #13c2c2;
+  border-color: #c9fbf6 !important;
+  color: var(--variant-color) !important;
+  background: transparent !important;
+}
+
+/* Secondary - neutral */
+.icon-button.icon-button-secondary {
+  --variant-color: #595959;
+  border-color: #e6e6e6 !important;
+  color: var(--variant-color) !important;
+  background: transparent !important;
+}
+
+.icon-button.icon-button-secondary:hover:not(:disabled) {
+  border-color: #3e5879 !important;
+  color: #3e5879 !important;
+  background: rgba(62, 88, 121, 0.08) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* Primary - filled blue with white icon/text (white glow) */
+.icon-button.icon-button-primary {
+  --variant-color: #ffffff; /* glow/inset color for primary */
+  background: #1677ff !important;
+  border-color: #1677ff !important;
+  color: var(--variant-color) !important;
+}
+
+/* Primary hover: keep filled background and white glow */
+.icon-button.icon-button-primary:hover:not(:disabled),
+.icon-button.icon-button-primary:focus-visible:not(:disabled) {
+  transform: scale(1.1);
+  background: #1677ff !important;
+  box-shadow: 0 0 12px 4px rgba(255, 255, 255, 0.28),
+    inset 0 0 0 1.6px rgba(255, 255, 255, 0.95);
+  border-color: #1677ff !important;
+}
+
+/* -------------- small tweaks -------------- */
+/* spacing when label is present */
+.icon-button .icon-button-label {
+  margin-left: 0.4rem;
+}
+
+/* ensure icon-only stays centered */
+.icon-button.icon-button-small .icon-button-label {
+  margin-left: 0.25rem;
+}
+
+/* disable text selection */
+.icon-button,
+.icon-button * {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+/* -------------- reduced motion -------------- */
+@media (prefers-reduced-motion: reduce) {
+  .icon-button {
+    transition: none !important;
+  }
+  .icon-button:hover,
+  .icon-button:active,
+  .icon-button:focus-visible {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+}

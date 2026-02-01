@@ -1,0 +1,25 @@
+@import "tailwindcss";
+@import "../../theme.css";
+
+
+@layer components {
+  .input-label {
+    @apply block text-sm font-semibold text-primary-dark mb-2;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-2.5 border-2 border-accent-warm rounded-xl focus:outline-none focus:border-primary-medium transition-colors bg-white text-primary-dark;
+  }
+
+  .input-field:focus {
+    @apply ring-2 ring-primary-medium/20;
+  }
+
+  .input-field::placeholder {
+    @apply text-accent-warm;
+  }
+
+  .input-error {
+    @apply text-sm text-red-600 mt-1 font-medium;
+  }
+}
